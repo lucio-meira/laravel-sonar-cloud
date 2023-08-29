@@ -12,3 +12,5 @@ permissions:
 jobs:
   sonarcloud:
     uses: ./.github/workflows/sonarcloud-module.yml
+    secrets:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
