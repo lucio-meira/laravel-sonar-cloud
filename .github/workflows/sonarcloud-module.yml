@@ -31,3 +31,4 @@ jobs:
           args: >
             -Dsonar.projectKey=lucio-meira_laravel-sonar-cloud
             -Dsonar.organization=lucio-meira
+            -Dsonar.verbose=true
