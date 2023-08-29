@@ -1,0 +1,33 @@
+name: SonarCloud Analysis
+
+on:
+  workflow_call:
+    inputs:
+      UBUNTU_VERSION:
+        default: 'ubuntu-latest'
+        required: false
+        type: string
+
+permissions:
+  pull-requests: read
+
+jobs:
+  sonarcloud:
+    name: Run SonarCloud Analysis
+    runs-on: ${{ inputs.UBUNTU_VERSION }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Analyze with SonarCloud
+        uses: SonarSource/sonarcloud-github-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}   # Generate a token on Sonarcloud.io, add it to the secrets of this repo with the name SONAR_TOKEN (Settings > Secrets > Actions > add new repository secret)
+        with:
+          args: >
+            -Dsonar.projectKey=lucio-meira_laravel-sonar-cloud
+            -Dsonar.organization=lucio-meira

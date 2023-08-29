@@ -1,0 +1,10 @@
+name: ci-sonar
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sonarcloud:
+    uses: ./.github/workflows/sonarcloud-module.yml
